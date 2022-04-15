@@ -1,0 +1,11 @@
+cria o serviço com o nome de "web-server", esse serviço irá realizar a criação de 3 conteiners do httpd (rodar o comando abaixo na vm manager)
+docker service create --name web-server --replicas 3 -p 8080:80 httpd
+
+lista como ficou dividido os containers
+docker service ps web-server
+
+tira a máquina virtual da lista que recebe os conteiners
+docker node update --availability drain dw1
+
+exclui o serviço "web-server" e os conteiners que foram criados
+docker service rm web-server

@@ -1,0 +1,14 @@
+lista quais redes estão disponíveis no servidor
+docker network ls
+
+mostra todas as informações da rede "bridge"
+docker network inspect bridge
+
+instala o ping no docker
+apt-get install -y iputils-ping
+
+cria uma rede com o nome de "minha-rede"
+docker network create minha-rede
+
+cria o conteiner do ubuntu em segundo plano, com o nome "ubuntu-A", colocando na rede "minha-rede"
+docker run -dit --name ubuntu-A --network minha-rede  ubuntu

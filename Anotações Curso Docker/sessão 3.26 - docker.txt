@@ -1,0 +1,34 @@
+cria o conteiner do ubuntu com o nome "ubuntu-python"
+docker run -dti --name ubuntu-python ubuntu
+
+acessa o conteiner "ubuntu-python"
+docker exec -ti ubuntu-python bash
+
+instala o python3 no conteiner
+apt install python3
+
+limpa os arquivos .deb que já foram utilizados
+apt clean
+
+vim app.py
+cola o script python abaixo
+nome = input("Qual é o seu nome? ")
+print (nome)
+
+criar o arquivo "dockerfile"
+vim dockerfile
+
+cola o script python abaixo
+FROM ubuntu
+
+RUN apt update && apt install -y python3 && apt clean
+
+COPY app.py /opt/app.py
+
+CMD python3 /opt/app.py
+
+roda o script "dockerfile" que está na mesma pasta (por isso o .) e coloca o nome da imagem
+docker build . -t python-ubuntu
+
+cria o conteiner com o nome "meu-app" utilizando a imagem que eu criei (ubuntu-python)
+docker run -ti --name meu-app ubuntu-python

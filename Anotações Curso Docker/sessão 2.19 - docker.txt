@@ -1,0 +1,25 @@
+****bind mount *****
+cria o mount indicando o tipo "bind" onde está o arquivo de origem (src) e onde deve colocar o arquivo (dst)
+docker run -dti --mount type=bind,src=/opt/teste,dst=/teste debian
+
+cria o mount indicando o tipo "bind" onde está o arquivo de origem (src), onde deve colocar o arquivo (dst) e permissão de realy-only (ro) 
+docker run -dti --mount type=bind,src=/opt/teste,dst=/teste,ro debian
+
+***volumes****
+cria o volume chamado "teste"
+docker volume create teste
+
+lista todos os volumes
+docker volume ls
+
+local onde fica salvo os arquivos 
+/var/lib/docker/volumes/teste/_data
+
+cria o mount indicando o tipo "volume" onde está o arquivo de origem (src) e onde deve colocar o arquivo (dst)
+docker run -dti --mount type=volume,src=teste,dst=/teste debian
+
+exclui o volume chamado "teste" (primeiro deve parar o conteiner)
+docker volume rm teste
+
+excluir todos os volumes do servidor que não estão em uso
+docker volume prune

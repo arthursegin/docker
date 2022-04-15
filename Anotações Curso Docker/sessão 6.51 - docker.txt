@@ -1,0 +1,23 @@
+cria umna AWS com o nome de "aws-1" informando a região, zona, vpc e subnet
+docker-machine create --driver amazonec2 --amazonec2-region "us-east-1" --amazonec2-zone a --amazonec2-vpc-id "vpc-id" --amazonec2-subnet-id "subnet-id"  aws-1
+
+acessa a máquina virtual "aws-1"
+docker-machine ssh aws-1
+
+inicia o cluster e pega o token para adicionar os workers
+docker swarm init
+
+coloca a máquina "aws-2" como manager
+docker node promote aws-2
+
+cria um volune no cluster com o nome de "app"
+docker volume create app
+
+lista os volumes do cluster
+docker volume create ls
+
+acessa a pasta do volume criada
+cd /var/lib/docker/volumes/app
+
+baixa o zip do site1 através do site
+wget http://site1368633667.hospedagemdesites.ws/site1.zip

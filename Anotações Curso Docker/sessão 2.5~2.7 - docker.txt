@@ -1,0 +1,33 @@
+baixar a imagem do hello-world (ultima versão)
+docker pull hello-world
+
+verificar quais imagens tem instaladas no servidor
+docker images
+
+executa o conteiner hello-world
+docker run hello-world
+
+verifica os conteiners que estão rodando no servidor
+docker ps
+
+verifica os conteiners que foram executados recentemente
+docker ps -a
+
+baixar a imagem do ubuntu (ultima versão)
+docker pull ubuntu
+
+executa o conteiner ubuntu
+docker run ubuntu
+
+para rodar o docker por 10 segundos
+docker run ubuntu sleep 10
+
+para sair do loop acima (caso tenha coloca um número muito alto) acessa o servidor de outra aba e roda o comando abaixo
+esse comando para o conteiner que está em execução (colocar o ID do conteiner que deseja parar)
+docker stop [id]
+
+lista as combinações do comando "docker run"
+docker run --help
+
+aloca o pseudo-TTY e aciona o modo interativo
+docker run -ti ubuntu

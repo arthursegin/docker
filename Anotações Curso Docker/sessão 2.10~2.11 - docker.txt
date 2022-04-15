@@ -1,0 +1,11 @@
+cria uma pasta chamada "destino" na imagem Ubuntu-A
+docker exec Ubuntu-A mkdir /destino/
+
+lista as pastas existentes em "/" na imagem Ubuntu-A
+docker exec Ubuntu-A ls -l /
+
+copia o arquivo "MeuArquivo.txt" para a pasta /destino dentro imagem Ubuntu-A
+docker cp MeuArquivo.txt Ubuntu-A:/destino/
+
+copiar um arquivo de dentro do conteiner para o servidor
+docker cp Ubuntu-A:/destino/Meuzip.zip  Zipcopia.zip

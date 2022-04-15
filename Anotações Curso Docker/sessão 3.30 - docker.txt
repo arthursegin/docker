@@ -1,0 +1,9 @@
+se autenticar no site do Docker Hub
+docker login
+
+gerar a imagem colocando o seu usuário e o nome da imagem
+docker build . -t nome-de-usuário/my-go-app:1.0
+
+sobe a imagem criada no seu Docker Hub com o nome de "my-go-app"
+docker push nome-deu-usuário/my-go-app:1.0
+

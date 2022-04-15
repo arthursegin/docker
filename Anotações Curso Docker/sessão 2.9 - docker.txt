@@ -1,0 +1,17 @@
+excluir o conteiner do servidor
+docker rm [id]
+
+excluir o conteiner do servidor sem precisar parar ele (usa o -f para forçar a exclusão)
+docker rm -f [id]
+
+excluir todos os conteiners do servidor que não estão em uso
+docker container prune
+
+exclui a imagem baixada do conteiner no servidor
+docker rmi [nome da imagem]
+
+caso não exista a imagem docker no servidor ele realiza o processo de instalação (da ultima versão) e executa o container
+docker run -dti centos
+
+coloca um nome para o container
+docker run -dti --name Ubuntu-A ubuntu

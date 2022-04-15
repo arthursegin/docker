@@ -1,0 +1,8 @@
+executa o conteiner em segundo plano, aloca o pseudo-TTY e aciona o modo interativo
+docker run -dti ubuntu
+
+acessa o conteiner com o nome de Ubuntu-A
+docker exec -ti Ubuntu-A /bin/bash 
+
+acessa o conteiner informado e executa o comando que lista a versão do programa
+docker exec -ti [id ou nome]  cat /etc/*release*

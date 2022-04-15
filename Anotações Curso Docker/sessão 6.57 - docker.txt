@@ -1,0 +1,34 @@
+cria o arquivo de conf do nginx
+vim nginx.conf
+
+cola o script abaixo
+http {
+   
+    upstream all {
+        server 172.31.0.37:80;
+        server 172.31.0.151:80;
+        server 172.31.0.149:80;
+    }
+
+    server {
+         listen 4500;
+         location / {
+              proxy_pass http://all/;
+         }
+    }
+}
+
+events { }
+
+cria o arquivo dockerfile
+vim dockerfile
+
+cola o script abaixo
+FROM nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+
+cria a imagem com o nome de "proxy-app"
+docker build -t proxy-app .
+
+cria o conteiner com o nome de "my-proxy-app", informando a porta 4500 e a imagem "proxy-app"
+docker container run --name my-proxy-app -dti -p 4500:4500 proxy-app

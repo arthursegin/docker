@@ -1,0 +1,11 @@
+mostra a quantidade de cpu/memória que o conteiner "php-A" está utilizando
+docker stats php-A
+
+limita a quantidade de memória (128Mb) e cpu (20%) que pode ser utilizada pelo container "php-A"
+docker update php-A -m 128M --cpus 0.2
+
+instala a aplicação stress no servidor
+apt install stress
+
+roda a aplicação stress informando a quantidade de cpu e memória que quer enviar (nesse caso 50Mb)
+stress --cpu 1 --vm-bytes 50m --vm 1 --vm-bytes 50m

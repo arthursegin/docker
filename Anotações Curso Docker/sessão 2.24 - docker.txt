@@ -1,0 +1,8 @@
+mostra todas as informações do docker
+docker info
+
+mostra os logs do container "mysql-A"
+docker logs mysql-A
+
+mostra quais processos estão em execução no container "php-A"
+docker top php-A

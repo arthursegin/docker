@@ -1,0 +1,23 @@
+baixar a imagem do mysql (ultima versão)
+docker pull mysql
+ 
+executar o docker em segundo plano colocando a variavel MYSQL_ROOT_PASSWORD como Senha123, definindo o nome do container como mysql-A e colocando as portas 3306
+docker run -e MYSQL_ROOT_PASSWORD=Senha123 --name mysql-A -d -p 3306:3306 mysql
+
+acessa o conteiner docker com o nome de "mysql-A"
+docker exec -it mysql-A bash
+
+loga no banco com o usuário root através do protocolo tcp e a porta padrão (irá solicitar a senha cadastrada anteriormente)
+mysql -u root -p --protocol=tcp
+
+cria uma tabela no BD
+CREATE DATABASE aula;
+
+mostra as tabelas do BD
+show databases;
+
+lista todas as informações do conteiner "mysql-A"
+docker inspect mysql-A
+
+se estiver na mesma faixa de IP e com o conteiner do mysql-client consegue acessar o BD sem precisar acessar o conteiner do "mysql-A" (irá solicitar a senha cadastrada anteriormente)
+mysql -u root -p --protocol=tcp

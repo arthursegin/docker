@@ -1,0 +1,32 @@
+criar a máquina virtual dw1
+docker-machine create --driver virtualbox  dw1
+
+criar a máquina virtual dw2
+docker-machine create --driver virtualbox  dw2
+
+criar a máquina virtual dw3
+docker-machine create --driver virtualbox  dw3
+
+acessa a máquina virtual (dw1) para colocar ela como manager 
+docker-machine ssh dw1
+
+especificando o ip do servidor (manager)
+docker swarm init --advertise-addr 192.168.99.101
+
+salva o token que é gerado para criar os workers
+docker swarm join --token SWMTKN-1-1yo4sqivn231qxnkcs79l4yau2wyy3d5qvrhiuh8t3z9ckj2db-1iruj17y281rjs8o2z6gku53z 192.168.99.101:2377
+
+acessa a máquina virtual (dw2) para colocar ela como worker
+docker-machine ssh dw2
+
+roda o comando abaixo para colocar ela no cluster como worker (informando o token)
+docker swarm join --token [token] [ip]:2377
+
+acessa a máquina virtual (dw3) para colocar ela como o outro worker
+docker-machine ssh dw3
+
+roda o comando abaixo para colocar ela no cluster como worker (informando o token)
+docker swarm join --token [token] [ip]:2377
+
+através da máquina virtual (manager) podemos rodar o comando abaixo para verificar os nós que foram adicionados
+docker node ls

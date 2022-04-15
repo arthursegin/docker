@@ -1,0 +1,36 @@
+criar o script em .yml
+vim docker-compose.yml
+
+====================
+version: '3.8'
+
+services:
+  mysqlsrv:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "Senha123"
+      MYSQL_DATABASE: "testedb"
+    ports:
+      - "3306:3306"
+    volumes:
+      - /data/mysql-C:/var/lib/mysql
+    networks:
+      - minha-rede
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    networks:
+      - minha-rede
+
+networks: 
+  minha-rede:
+    driver: bridge
+====================
+
+roda o comando em segundo plano, cria os dois conteiners e a rede especificados no script acima
+docker-compose up -d
+
+para os dois conteiners e exclui a rede especificados no script acima
+docker-compose down

@@ -1,0 +1,29 @@
+baixa em segundo plano a imagem do registry, colocando a porta 5000, colocando um restart caso dê algum problema com o nome da imagem "registry", baixando a versão 2
+docker run -d -p 5000:5000 --restart=always --name registry registry:2
+
+desloga do Docker Hub
+docker logout
+
+baixa a imagem do apache utilizando o id da imagem e troca a tag para o ip/localhost e a porta 5000
+docker image tag [id] localhost:5000/my-go-app:1.0
+
+verifica os repositórios que existem no servidor (ip/localhost)
+curl localhost:5000/v2/_catalog
+
+baixa a imagem meu-apache na versão 1.0
+docker push localhost:5000/my-go-app:1.0
+
+cria o arquivo daemon.json
+vim /etc/docker/daemon.json 
+
+cola o script abaixo
+{ "insecure-registries":["localhost:5000"] }
+	
+restarta o serviço do docker
+systemctl restart docker
+
+sobe a imagem no servidor
+docker push localhost:5000/my-go-app:1.0
+
+confirma que a imagem subiu com o comando abaixo
+curl localhost:5000/v2/_catalog

@@ -1,0 +1,23 @@
+mostra a versão do docker-machine instalada
+docker-machine version
+
+cria uma máquina virtual com 1cpu, 20Gb de espaço em disco, 1Gb de memória e o nome de my-docker-vm
+docker-machine create --driver virtualbox my-docker-vm
+
+listar as maquinas vituais criadas no docker-machine e as informações (nome, driver, URL, versão) de cada uma
+docker-machine ls
+
+mostra o ip da maquina "my-docker-vm"
+docker-machine ip my-docker-vm
+
+realiza o acesso remoto através do ssh na maquina "my-docker-vm"
+docker-machine ssh my-docker-vm
+
+para a máquina virtual "my-docker-vm"
+docker-machine stop my-docker-vm
+
+inicia a máquina virtual "my-docker-vm"
+docker-machine start my-docker-vm
+
+exclui a máquina virtual "my-docker-vm" que está em execução
+docker-machine rm -f my-docker-vm

@@ -1,0 +1,12 @@
+link de como instalar o docker no Ubuntu
+https://docs.docker.com/engine/install/ubuntu/
+
+Comando para instalar o docker no Ubuntu
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
+
+verificar a versão do docker
+docker version
+
+verificar se o docker está rodando no servidor
+systemctl status docker

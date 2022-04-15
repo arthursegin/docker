@@ -1,0 +1,24 @@
+cria um serviço/conteiner com a imagem do http com o nome de "web-server" informando a quantidade de réplicas, as portas e o volume
+docker service create --name web-server --replicas 3 -dt -p 8080:80 --mount type=volume,src=app,dst=/usr/local/apache2/htdocs/ httpd
+
+instala o nfs-server no serviço/conteiner
+sudo apt-get install nfs-server
+
+acessa o arquivo "exports"
+vim /etc/exports
+
+cola o script abaixo
+cd /var/lib/docker/volumes/app/_data *(rw,sync,subtree_check)
+
+exporta o diretório criado acima
+exportfs -ar
+
+instala o nfs-common no worker
+sudo apt-get install nfs-common
+
+verifica se já está disponível os dados compartilhados do servidor manager
+showmount -e [ip]
+
+copia os arquivos compartilhados do servidor manager e envia para os workers
+mount [ip]:/var/lib/docker/volumes/app/_data /var/lib/docker/volumes/app/_data 
+

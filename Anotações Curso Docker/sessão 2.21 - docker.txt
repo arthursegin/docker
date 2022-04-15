@@ -1,0 +1,14 @@
+cria o conteiner httpd com o nome de "apache-A" roda em segundo plano, utiliza a porta 80 e o volume será salvo em /data/apache-A, usando a referência do site (/usr/local/apache2/htdocs/)
+docker run  --name apache-A -d -p 80:80 --volume=/data/apache-A:/usr/local/apache2/htdocs/ httpd
+
+Script HTML para inserir na pasta /data/apache-A
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Exemplo Apache</title>
+</head>
+<body>
+<h1> OK !! Apache funcionando!!!!! </h1>
+</body>
+</html>

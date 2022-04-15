@@ -1,0 +1,46 @@
+baixar a imagem do golang (ultima versão)
+docker pull golang
+
+baixar a imagem do alpine (ultima versão)
+docker pull alpine
+
+============================================================
+vim app.go
+package main
+import (
+    "fmt"
+)
+
+func main() {
+  fmt.Println("Qual é o seu nome:? ")
+  var name string
+  fmt.Scanln(&name)
+  fmt.Printf("Oi, %s! Eu sou a linguagem Go! ", name)
+}
+
+
+=============================================================
+vim Dockerfile
+FROM golang as exec
+
+COPY app.go /go/src/app/
+
+ENV GO111MODULE=auto
+
+WORKDIR /go/src/app
+
+RUN go build -o app.go .
+
+FROM alpine
+
+WORKDIR /appexec
+COPY --from=exec /go/src/app/ /appexec
+RUN chmod -R 755 /appexec
+ENTRYPOINT ./app.go
+
+==============================================================
+cria a imagem através do dockerfile que foi criado acima com o nome "app-go:1.0", indicando a versão 1.0
+docker image build -t app-go:1.0 .
+
+roda o cria o conteiner com o nome "meuappOK" usando a imagem que criamos acima
+docker run -ti  --name meuappOK app-go:1.0

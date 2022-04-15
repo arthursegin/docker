@@ -1,0 +1,69 @@
+acessa o arquivo "exports"
+vim /etc/exports
+
+cola o script abaixo
+/var/lib/docker/volumes/php-app_app/_data *(rw,sync,subtree_check)
+
+exporta o diretório criado acima
+exportfs -ar
+
+copia os arquivos compartilhados do servidor manager e envia para os workers
+mount [ip]:/var/lib/docker/volumes/php-app_app/_data /var/lib/docker/volumes/php-app_app/_data
+
+cria o arquivo php
+vim index.php
+
+cola o script PHP abaixo
+<html>
+
+<head>
+<title>Exemplo PHP</title>
+</head>
+
+<?php
+ini_set("display_errors", 1);
+header('Content-Type: text/html; charset=iso-8859-1');
+
+echo 'Versao Atual do PHP: ' . phpversion() . '<br>';
+
+$servername = "54.234.153.24";
+$username = "root";
+$password = "Senha123";
+$database = "meubanco";
+
+//Criar conexão
+$link = new mysqli($servername, $username, $password, $database);
+
+/* check connection */
+if (mysqli_connect_errno()) {
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
+}
+
+$valor_rand1 =  rand(1, 999);
+$valor_rand2 = strtoupper(substr(bin2hex(random_bytes(4)), 1));
+
+
+$query = "INSERT INTO dados (AlunoID, Nome, Sobrenome, Endereco, Cidade) VALUES ('$valor_rand1' , '$valor_rand2', '$valor_rand2', '$valor_rand2', '$valor_rand2')";
+
+
+if ($link->query($query) === TRUE) {
+  echo "New record created successfully";
+} else {
+  echo "Error: " . $link->error;
+}
+
+</html>
+
+cria o arquivo uploads.ini
+vim uploads.ini
+
+cola o script abaixo para limitar a quantidade de memória,  que pode ser utilizada
+file_uploads = On
+memory_limit = 500M
+upload_max_filesize = 500M
+post_max_size = 500M
+max_execution_time = 600
+max_file_uploads = 50000
+max_execution_time = 5000
+max_input_time = 5000

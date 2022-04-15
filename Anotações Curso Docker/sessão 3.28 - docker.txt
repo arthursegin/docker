@@ -1,0 +1,22 @@
+vim app.py
+cola o script python abaixo
+nome = input("Qual é o seu nome? ")
+print (nome)
+
+criar o arquivo "dockerfile"
+vim Dockerfile
+
+cola o script python abaixo
+FROM python
+
+WORKDIR /usr/src/app
+
+COPY app.py /usr/src/app
+
+CMD [ "python", "./app.py" ]
+
+cria a imagem através do dockerfile que foi criado acima com o nome "app-python", indicando a versão 1.0
+docker image build -t app-python:1.0 . 
+
+cria o conteiner com o nome "runapp1" usando a imagem que criamos acima
+docker run -ti --name runapp1 app-python:1.0 

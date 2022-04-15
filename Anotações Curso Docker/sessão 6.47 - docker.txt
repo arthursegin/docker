@@ -1,0 +1,20 @@
+irá bloquear o recebimento de novos conteiners na máquina virtual/node "dw2" (mas os atuais continua funcionando)	
+docker node update --availability pause dw2
+docker service create --name ubuntu-server -dt --replicas 2 ubuntu
+
+lista como ficou dividido os nós
+docker node ls
+
+lista como ficou dividido os containers
+docker service ls
+
+mostra o token do worker para adicionar as máquinas virtuais no cluster (rodar o comando abaixo na vm manager)
+docker swarm join-token worker
+
+muda a máquina "dw2" de worker para manager
+docker node promote dw2
+
+muda a máquina "dw2" de manager para worker
+docker node demote dw2
+
+

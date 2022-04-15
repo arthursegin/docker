@@ -1,0 +1,5 @@
+esse comando para o conteiner com o nome "mysql-A" que está em execução (colocar o ID do conteiner que deseja parar)
+docker stop mysql-A
+
+para iniciar o conteiner com o nome "mysql-A" que está parado/com o status "exited"
+docker start mysql-A
